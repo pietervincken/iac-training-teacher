@@ -70,4 +70,8 @@ resources:
   - resources/prometheus/prometheus-service.yaml
   - resources/prometheus/prometheus-serviceAccount.yaml
   - resources/prometheus/prometheus-serviceMonitor.yaml
+
+  ## Needed for prometheus to find endpoints to monitor in cluster.
+  - resources/prometheus-view-rbac.yaml
+
   - resources/namespace.yaml
