@@ -3,3 +3,11 @@ kind: Kustomization
 
 resources:
   - ./config/install
+
+patches:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: grafana-operator-controller-manager
+    path: patches/grafana-image-version.yaml

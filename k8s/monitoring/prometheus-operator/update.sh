@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-BUILD_IMAGES=false
-
 ### Helper
 get_latest_release() {
   curl --silent "https://api.github.com/repos/$1/releases/latest" | # Get latest release from GitHub api

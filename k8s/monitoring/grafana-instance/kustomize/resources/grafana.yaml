@@ -5,6 +5,8 @@ metadata:
 spec:
   client:
     preferService: true
+  ingress:
+    enabled: False
   config:
     log:
       mode: "console"
@@ -23,12 +25,12 @@ spec:
       type: "grafana-service"
   dashboardLabelSelector:
     - matchExpressions:
-        - { key: app, operator: In, values: [ grafana ] }
+        - { key: app, operator: In, values: [grafana] }
   resources:
     # Optionally specify container resources
     limits:
-      cpu: 1
-      memory: 1Gi
+      cpu: 200m
+      memory: 200Mi
     requests:
       cpu: 100m
-      memory: 200Mi
+      memory: 100Mi

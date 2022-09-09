@@ -85,6 +85,19 @@ metadata:
       }
       ]
     capabilities: Basic Install
+    categories: Monitoring
+    certified: "False"
+    containerImage: quay.io/grafana-operator/grafana-operator:v4.6.0
+    createdAt: "2022-08-18T12:00:12Z"
+    description: A Kubernetes Operator based on the Operator SDK for creating and
+      managing Grafana instances
+    repository: https://github.com/grafana-operator/grafana-operator
+    support: Red Hat
+  labels:
+    operatorframework.io/arch.amd64: supported
+    operatorframework.io/arch.arm64: supported
+    operatorframework.io/arch.ppc64le: supported
+    operatorframework.io/arch.s390x: supported
   name: grafana-operator.v0.0.0
   namespace: placeholder
 spec:
@@ -100,6 +113,16 @@ spec:
       displayName: Grafana
       kind: Grafana
       name: grafanas.integreatly.org.integreatly.org
+      version: v1alpha1
+    - description: GrafanaDashboard is the Schema for the grafanadashboards API
+      displayName: Grafana Dashboard
+      kind: GrafanaDashboard
+      name: grafanadashboards.integreatly.org
+      version: v1alpha1
+    - description: Grafana is the Schema for the grafanas API
+      displayName: Grafana
+      kind: Grafana
+      name: grafanas.integreatly.org
       version: v1alpha1
   description: |
     A Kubernetes Operator based on the Operator SDK for creating and managing Grafana instances.
@@ -145,4 +168,5 @@ spec:
   maturity: alpha
   provider:
     name: Red Hat
+  replaces: grafana-operator.v4.5.1
   version: 0.0.0
