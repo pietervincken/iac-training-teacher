@@ -14,46 +14,55 @@ patches:
 
 resources:
   - resources/alertmanager/alertmanager-alertmanager.yaml
+  - resources/alertmanager/alertmanager-networkPolicy.yaml
   - resources/alertmanager/alertmanager-podDisruptionBudget.yaml
   - resources/alertmanager/alertmanager-prometheusRule.yaml
   - resources/alertmanager/alertmanager-secret.yaml
   - resources/alertmanager/alertmanager-service.yaml
   - resources/alertmanager/alertmanager-serviceAccount.yaml
   - resources/alertmanager/alertmanager-serviceMonitor.yaml
-  - resources/blackbox-exporter/blackbox-exporter-clusterRole.yaml
-  - resources/blackbox-exporter/blackbox-exporter-clusterRoleBinding.yaml
-  - resources/blackbox-exporter/blackbox-exporter-configuration.yaml
-  - resources/blackbox-exporter/blackbox-exporter-deployment.yaml
-  - resources/blackbox-exporter/blackbox-exporter-service.yaml
-  - resources/blackbox-exporter/blackbox-exporter-serviceAccount.yaml
-  - resources/blackbox-exporter/blackbox-exporter-serviceMonitor.yaml
-  - resources/kube-state-metrics/kube-state-metrics-clusterRole.yaml
-  - resources/kube-state-metrics/kube-state-metrics-clusterRoleBinding.yaml
-  - resources/kube-state-metrics/kube-state-metrics-deployment.yaml
-  - resources/kube-state-metrics/kube-state-metrics-prometheusRule.yaml
-  - resources/kube-state-metrics/kube-state-metrics-service.yaml
-  - resources/kube-state-metrics/kube-state-metrics-serviceAccount.yaml
-  - resources/kube-state-metrics/kube-state-metrics-serviceMonitor.yaml
-  - resources/kubernetes/kubernetes-prometheusRule.yaml
-  - resources/kubernetes/kubernetes-serviceMonitorApiserver.yaml
-  - resources/kubernetes/kubernetes-serviceMonitorCoreDNS.yaml
-  - resources/kubernetes/kubernetes-serviceMonitorKubeControllerManager.yaml
-  - resources/kubernetes/kubernetes-serviceMonitorKubeScheduler.yaml
-  - resources/kubernetes/kubernetes-serviceMonitorKubelet.yaml
-  - resources/node-exporter/node-exporter-clusterRole.yaml
-  - resources/node-exporter/node-exporter-clusterRoleBinding.yaml
-  - resources/node-exporter/node-exporter-daemonset.yaml
-  - resources/node-exporter/node-exporter-prometheusRule.yaml
-  - resources/node-exporter/node-exporter-service.yaml
-  - resources/node-exporter/node-exporter-serviceAccount.yaml
-  - resources/node-exporter/node-exporter-serviceMonitor.yaml
+
+  - resources/blackbox-exporter/blackboxExporter-clusterRole.yaml
+  - resources/blackbox-exporter/blackboxExporter-clusterRoleBinding.yaml
+  - resources/blackbox-exporter/blackboxExporter-configuration.yaml
+  - resources/blackbox-exporter/blackboxExporter-deployment.yaml
+  - resources/blackbox-exporter/blackboxExporter-service.yaml
+  - resources/blackbox-exporter/blackboxExporter-networkPolicy.yaml
+  - resources/blackbox-exporter/blackboxExporter-serviceAccount.yaml
+  - resources/blackbox-exporter/blackboxExporter-serviceMonitor.yaml
+
+  - resources/kube-state-metrics/kubeStateMetrics-clusterRole.yaml
+  - resources/kube-state-metrics/kubeStateMetrics-clusterRoleBinding.yaml
+  - resources/kube-state-metrics/kubeStateMetrics-deployment.yaml
+  - resources/kube-state-metrics/kubeStateMetrics-networkPolicy.yaml
+  - resources/kube-state-metrics/kubeStateMetrics-prometheusRule.yaml
+  - resources/kube-state-metrics/kubeStateMetrics-service.yaml
+  - resources/kube-state-metrics/kubeStateMetrics-serviceAccount.yaml
+  - resources/kube-state-metrics/kubeStateMetrics-serviceMonitor.yaml
+
+  - resources/kubernetes/kubernetesControlPlane-prometheusRule.yaml
+  - resources/kubernetes/kubernetesControlPlane-serviceMonitorApiserver.yaml
+  - resources/kubernetes/kubernetesControlPlane-serviceMonitorCoreDNS.yaml
+  - resources/kubernetes/kubernetesControlPlane-serviceMonitorKubeControllerManager.yaml
+  - resources/kubernetes/kubernetesControlPlane-serviceMonitorKubeScheduler.yaml
+  - resources/kubernetes/kubernetesControlPlane-serviceMonitorKubelet.yaml
+
+  - resources/node-exporter/nodeExporter-clusterRole.yaml
+  - resources/node-exporter/nodeExporter-clusterRoleBinding.yaml
+  - resources/node-exporter/nodeExporter-daemonset.yaml
+  - resources/node-exporter/nodeExporter-networkPolicy.yaml
+  - resources/node-exporter/nodeExporter-prometheusRule.yaml
+  - resources/node-exporter/nodeExporter-service.yaml
+  - resources/node-exporter/nodeExporter-serviceAccount.yaml
+  - resources/node-exporter/nodeExporter-serviceMonitor.yaml
+
   - resources/prometheus/prometheus-clusterRole.yaml
   - resources/prometheus/prometheus-clusterRoleBinding.yaml
-  - resources/prometheus/prometheus-operator-prometheusRule.yaml
-  - resources/prometheus/prometheus-operator-serviceMonitor.yaml
+  - resources/prometheus/prometheus-networkPolicy.yaml
   - resources/prometheus/prometheus-podDisruptionBudget.yaml
   - resources/prometheus/prometheus-prometheus.yaml
   - resources/prometheus/prometheus-prometheusRule.yaml
+
   # - resources/prometheus/prometheus-roleBindingConfig.yaml
   # - resources/prometheus/prometheus-roleBindingSpecificNamespaces.yaml
   # - resources/prometheus/prometheus-roleConfig.yaml

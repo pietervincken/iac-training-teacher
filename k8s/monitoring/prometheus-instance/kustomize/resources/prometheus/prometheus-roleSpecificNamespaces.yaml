@@ -5,11 +5,12 @@ items:
   metadata:
     labels:
       app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: k8s
       app.kubernetes.io/name: prometheus
       app.kubernetes.io/part-of: kube-prometheus
-      app.kubernetes.io/version: 2.30.0
+      app.kubernetes.io/version: 2.36.1
     name: prometheus-k8s
-    namespace: monitoring
+    namespace: default
   rules:
   - apiGroups:
     - ""
@@ -42,11 +43,12 @@ items:
   metadata:
     labels:
       app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: k8s
       app.kubernetes.io/name: prometheus
       app.kubernetes.io/part-of: kube-prometheus
-      app.kubernetes.io/version: 2.30.0
+      app.kubernetes.io/version: 2.36.1
     name: prometheus-k8s
-    namespace: monitoring
+    namespace: kube-system
   rules:
   - apiGroups:
     - ""
@@ -79,9 +81,10 @@ items:
   metadata:
     labels:
       app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: k8s
       app.kubernetes.io/name: prometheus
       app.kubernetes.io/part-of: kube-prometheus
-      app.kubernetes.io/version: 2.30.0
+      app.kubernetes.io/version: 2.36.1
     name: prometheus-k8s
     namespace: monitoring
   rules:
