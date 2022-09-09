@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cronjob.yaml
+  - random-logger-deployment.yaml
+  - namespace.yaml
+  - hotrod.yaml
+
+namespace: exercises
+
+configMapGenerator:
+  - name: log-text
+    files:
+      - "log-text.txt"

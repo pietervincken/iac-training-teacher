@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - resources/cluster_role.yaml
+  - resources/cluster_role_binding.yaml
+  - resources/jaegertracing.io_jaegers_crd.yaml
+  - resources/operator.yaml
+  - resources/role.yaml
+  - resources/role_binding.yaml
+  - resources/service_account.yaml
+  - resources/namespace.yaml
+
+namespace: operator-jaeger
+
+patchesStrategicMerge:
+  - "patches/watch-ns.yaml"
+
+patches:
+  - target:
+      kind: ClusterRoleBinding
+      name: jaeger-operator
+    path: patches/clusterrolebinding-subject.yaml

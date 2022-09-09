@@ -1,0 +1,96 @@
+---
+# Source: jaeger/templates/hotrod-sa.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jaeger-hotrod
+  labels:
+    helm.sh/chart: jaeger-0.47.0
+    app.kubernetes.io/name: jaeger
+    app.kubernetes.io/instance: jaeger
+    app.kubernetes.io/version: "1.22.0"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: hotrod
+automountServiceAccountToken: false
+---
+# Source: jaeger/templates/hotrod-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger-hotrod
+  labels:
+    helm.sh/chart: jaeger-0.47.0
+    app.kubernetes.io/name: jaeger
+    app.kubernetes.io/instance: jaeger
+    app.kubernetes.io/version: "1.22.0"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: hotrod
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+  selector:
+    app.kubernetes.io/name: jaeger
+    app.kubernetes.io/instance: jaeger
+    app.kubernetes.io/component: hotrod
+# Source: jaeger/templates/hotrod-deploy.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger-hotrod
+  labels:
+    helm.sh/chart: jaeger-0.47.0
+    app.kubernetes.io/name: jaeger
+    app.kubernetes.io/instance: jaeger
+    app.kubernetes.io/version: "1.22.0"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: hotrod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jaeger
+      app.kubernetes.io/instance: jaeger
+      app.kubernetes.io/component: hotrod
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: jaeger
+        app.kubernetes.io/instance: jaeger
+        app.kubernetes.io/component: hotrod
+    spec:
+      securityContext: {}
+      serviceAccountName: jaeger-hotrod
+      containers:
+        - name: jaeger-hotrod
+          securityContext: {}
+          image: jaegertracing/example-hotrod:1.22.0
+          imagePullPolicy: Always
+          env:
+            - name: JAEGER_AGENT_HOST
+              value: jaeger-agent.tracing.svc.cluster.local
+            - name: JAEGER_AGENT_PORT
+              value: "6831"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            limits:
+              cpu: 1
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 32Mi

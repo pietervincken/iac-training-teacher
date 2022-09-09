@@ -1,0 +1,29 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mycron
+spec:
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      name: mycron
+    spec:
+      template:
+        spec:
+          containers:
+            - command:
+                - cat
+                - /content/log-text.txt
+              image: alpine
+              name: mycron
+              resources: {}
+              volumeMounts:
+                - name: log-text
+                  mountPath: /content
+          restartPolicy: OnFailure
+          volumes:
+            - name: log-text
+              configMap:
+                name: log-text
+  schedule: "*/5 * * * *"

@@ -1,0 +1,64 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+patches:
+  - target:
+      kind: Alertmanager
+    path: patches/single-replica.yaml
+
+  - target:
+      kind: Prometheus
+    path: patches/single-replica.yaml
+
+resources:
+  - resources/alertmanager/alertmanager-alertmanager.yaml
+  - resources/alertmanager/alertmanager-podDisruptionBudget.yaml
+  - resources/alertmanager/alertmanager-prometheusRule.yaml
+  - resources/alertmanager/alertmanager-secret.yaml
+  - resources/alertmanager/alertmanager-service.yaml
+  - resources/alertmanager/alertmanager-serviceAccount.yaml
+  - resources/alertmanager/alertmanager-serviceMonitor.yaml
+  - resources/blackbox-exporter/blackbox-exporter-clusterRole.yaml
+  - resources/blackbox-exporter/blackbox-exporter-clusterRoleBinding.yaml
+  - resources/blackbox-exporter/blackbox-exporter-configuration.yaml
+  - resources/blackbox-exporter/blackbox-exporter-deployment.yaml
+  - resources/blackbox-exporter/blackbox-exporter-service.yaml
+  - resources/blackbox-exporter/blackbox-exporter-serviceAccount.yaml
+  - resources/blackbox-exporter/blackbox-exporter-serviceMonitor.yaml
+  - resources/kube-state-metrics/kube-state-metrics-clusterRole.yaml
+  - resources/kube-state-metrics/kube-state-metrics-clusterRoleBinding.yaml
+  - resources/kube-state-metrics/kube-state-metrics-deployment.yaml
+  - resources/kube-state-metrics/kube-state-metrics-prometheusRule.yaml
+  - resources/kube-state-metrics/kube-state-metrics-service.yaml
+  - resources/kube-state-metrics/kube-state-metrics-serviceAccount.yaml
+  - resources/kube-state-metrics/kube-state-metrics-serviceMonitor.yaml
+  - resources/kubernetes/kubernetes-prometheusRule.yaml
+  - resources/kubernetes/kubernetes-serviceMonitorApiserver.yaml
+  - resources/kubernetes/kubernetes-serviceMonitorCoreDNS.yaml
+  - resources/kubernetes/kubernetes-serviceMonitorKubeControllerManager.yaml
+  - resources/kubernetes/kubernetes-serviceMonitorKubeScheduler.yaml
+  - resources/kubernetes/kubernetes-serviceMonitorKubelet.yaml
+  - resources/node-exporter/node-exporter-clusterRole.yaml
+  - resources/node-exporter/node-exporter-clusterRoleBinding.yaml
+  - resources/node-exporter/node-exporter-daemonset.yaml
+  - resources/node-exporter/node-exporter-prometheusRule.yaml
+  - resources/node-exporter/node-exporter-service.yaml
+  - resources/node-exporter/node-exporter-serviceAccount.yaml
+  - resources/node-exporter/node-exporter-serviceMonitor.yaml
+  - resources/prometheus/prometheus-clusterRole.yaml
+  - resources/prometheus/prometheus-clusterRoleBinding.yaml
+  - resources/prometheus/prometheus-operator-prometheusRule.yaml
+  - resources/prometheus/prometheus-operator-serviceMonitor.yaml
+  - resources/prometheus/prometheus-podDisruptionBudget.yaml
+  - resources/prometheus/prometheus-prometheus.yaml
+  - resources/prometheus/prometheus-prometheusRule.yaml
+  # - resources/prometheus/prometheus-roleBindingConfig.yaml
+  # - resources/prometheus/prometheus-roleBindingSpecificNamespaces.yaml
+  # - resources/prometheus/prometheus-roleConfig.yaml
+  # - resources/prometheus/prometheus-roleSpecificNamespaces.yaml
+  - resources/prometheus/prometheus-service.yaml
+  - resources/prometheus/prometheus-serviceAccount.yaml
+  - resources/prometheus/prometheus-serviceMonitor.yaml
+  - resources/namespace.yaml

@@ -1,0 +1,34 @@
+apiVersion: integreatly.org/v1alpha1
+kind: Grafana
+metadata:
+  name: grafana
+spec:
+  client:
+    preferService: true
+  config:
+    log:
+      mode: "console"
+      level: "error"
+    log.frontend:
+      enabled: true
+    auth:
+      disable_login_form: False
+      disable_signout_menu: True
+    auth.anonymous:
+      enabled: True
+  service:
+    name: "grafana-service"
+    labels:
+      app: "grafana"
+      type: "grafana-service"
+  dashboardLabelSelector:
+    - matchExpressions:
+        - { key: app, operator: In, values: [ grafana ] }
+  resources:
+    # Optionally specify container resources
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi

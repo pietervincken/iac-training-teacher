@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- resources/crds/monitoring.coreos.com_alertmanagerconfigs.yaml
+- resources/crds/monitoring.coreos.com_alertmanagers.yaml
+- resources/crds/monitoring.coreos.com_podmonitors.yaml
+- resources/crds/monitoring.coreos.com_probes.yaml
+- resources/crds/monitoring.coreos.com_prometheuses.yaml
+- resources/crds/monitoring.coreos.com_prometheusrules.yaml
+- resources/crds/monitoring.coreos.com_servicemonitors.yaml
+- resources/crds/monitoring.coreos.com_thanosrulers.yaml
+- resources/prometheus-operator-cluster-role-binding.yaml
+- resources/prometheus-operator-cluster-role.yaml
+- resources/prometheus-operator-crd-cluster-roles.yaml
+- resources/prometheus-operator-deployment.yaml
+- resources/prometheus-operator-service-account.yaml
+- resources/prometheus-operator-service-monitor.yaml
+- resources/prometheus-operator-service.yaml
+- resources/namespace.yaml
+
+namespace: operator-prometheus

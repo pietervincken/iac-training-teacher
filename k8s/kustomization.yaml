@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - logging/eck-operator/kustomize
+  - logging/eck-instance/kustomize
+
+  - monitoring/prometheus-operator/kustomize
+  - monitoring/prometheus-instance/kustomize
+
+  - monitoring/grafana-operator/kustomize
+  - monitoring/grafana-instance/kustomize
+
+  - tracing/jaeger-operator/kustomize
+  - tracing/jaeger-instance/kustomize
