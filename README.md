@@ -34,7 +34,3 @@ export ARM_TENANT_ID=$tenant # This is needed to pass the tenant ID to the Terra
 ## links
 - https://ordina-jworks.github.io/monitoring/2020/11/16/monitoring-spring-prometheus-grafana.html
 - https://micrometer.io/docs/registry/prometheus
-
-## TODO 
-
-- Tracing
