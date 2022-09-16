@@ -17,12 +17,16 @@ fi
 az aks get-credentials -g $rgruntime -n $clustername --admin --overwrite-existing
 
 kubectl apply -k k8s/monitoring/prometheus-operator/kustomize --server-side
+kubectl apply -k k8s/tracing/certmanager
 kubectl apply -k k8s/monitoring/grafana-operator/kustomize
 kubectl apply -k k8s/logging/eck-operator/kustomize
+kubectl apply -k k8s/tracing/jaeger-operator/kustomize
+
+sleep 20
 
 kubectl apply -k k8s/logging/eck-instance/kustomize
-kubectl apply -k k8s/logging/prometheus-instance/kustomize
-kubectl apply -k k8s/logging/grafana-instance/kustomize
+kubectl apply -k k8s/monitoring/prometheus-instance/kustomize
+kubectl apply -k k8s/monitoring/grafana-instance/kustomize
+kubectl apply -k k8s/tracing/jaeger-instance/kustomize 
 
-kubectl apply -k k8s/tracing/certmanager
-kubectl apply -k k8s/tracing/jaeger-operator/kustomize
+kubectl apply -k exercise-files
