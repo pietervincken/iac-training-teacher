@@ -16,6 +16,11 @@ fi
 
 az aks get-credentials -g $rgruntime -n $clustername --admin --overwrite-existing
 
-# kubectl apply -k k8s/microservice-demo/kustomize
+kubectl apply -k k8s/monitoring/prometheus-operator/kustomize --server-side
+kubectl apply -k k8s/monitoring/grafana-operator/kustomize
+kubectl apply -k k8s/logging/eck-operator/kustomize
 
-# kubectl apply -k k8s/hello-kubernetes-demo
+kubectl apply -k k8s/logging/eck-instance/kustomize
+kubectl apply -k k8s/logging/prometheus-instance/kustomize
+kubectl apply -k k8s/logging/grafana-instance/kustomize
+
