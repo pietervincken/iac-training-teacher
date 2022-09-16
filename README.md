@@ -37,5 +37,4 @@ export ARM_TENANT_ID=$tenant # This is needed to pass the tenant ID to the Terra
 
 ## TODO 
 
-- ECK / Logging
 - Tracing

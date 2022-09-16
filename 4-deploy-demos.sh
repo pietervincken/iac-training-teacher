@@ -24,3 +24,5 @@ kubectl apply -k k8s/logging/eck-instance/kustomize
 kubectl apply -k k8s/logging/prometheus-instance/kustomize
 kubectl apply -k k8s/logging/grafana-instance/kustomize
 
+kubectl apply -k k8s/tracing/certmanager
+kubectl apply -k k8s/tracing/jaeger-operator/kustomize

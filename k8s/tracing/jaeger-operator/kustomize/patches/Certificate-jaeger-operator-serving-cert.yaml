@@ -1,0 +1,5 @@
+- op: replace
+  path: /spec/dnsNames
+  value:
+    - jaeger-operator-webhook-service.operator-jaeger.svc
+    - jaeger-operator-webhook-service.operator-jaeger.svc.cluster.local

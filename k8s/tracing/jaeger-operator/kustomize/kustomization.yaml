@@ -1,22 +1,38 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - resources/cluster_role.yaml
-  - resources/cluster_role_binding.yaml
-  - resources/jaegertracing.io_jaegers_crd.yaml
-  - resources/operator.yaml
-  - resources/role.yaml
-  - resources/role_binding.yaml
-  - resources/service_account.yaml
+  - resources/Certificate-jaeger-operator-serving-cert.yml
+  - resources/ClusterRole-jaeger-operator-metrics-reader.yml
+  - resources/ClusterRole-manager-role.yml
+  - resources/ClusterRole-proxy-role.yml
+  - resources/ClusterRoleBinding-jaeger-operator-proxy-rolebinding.yml
+  - resources/ClusterRoleBinding-manager-rolebinding.yml
+  - resources/CustomResourceDefinition-jaegers.jaegertracing.io.yml
+  - resources/Deployment-jaeger-operator.yml
+  - resources/Issuer-jaeger-operator-selfsigned-issuer.yml
+  - resources/MutatingWebhookConfiguration-jaeger-operator-mutating-webhook-configuration.yml
+  - resources/Role-leader-election-role.yml
+  - resources/Role-prometheus.yml
+  - resources/RoleBinding-leader-election-rolebinding.yml
+  - resources/RoleBinding-prometheus.yml
+  - resources/Service-jaeger-operator-metrics.yml
+  - resources/Service-jaeger-operator-webhook-service.yml
+  - resources/ServiceAccount-jaeger-operator.yml
+  - resources/ValidatingWebhookConfiguration-jaeger-operator-validating-webhook-configuration.yml
   - resources/namespace.yaml
 
-namespace: operator-jaeger
+namespace: observability
+# patches:
+#   - target:
+#       kind: ClusterRoleBinding
+#       name: jaeger-operator
+#     path: patches/clusterrolebinding-subject.yaml
+#   - target:
+#       kind: Certificate
+#       name: jaeger-operator-serving-cert
+#     path: patches/Certificate-jaeger-operator-serving-cert.yaml
 
-patchesStrategicMerge:
-  - "patches/watch-ns.yaml"
-
-patches:
-  - target:
-      kind: ClusterRoleBinding
-      name: jaeger-operator
-    path: patches/clusterrolebinding-subject.yaml
+#   - target:
+#       kind: ValidatingWebhookConfiguration
+#       name: jaeger-operator-validating-webhook-configuration
+#     path: patches/ValidatingWebhookConfiguration-jaeger-operator-validating-webhook-configuration.yml
