@@ -19,12 +19,12 @@ az aks get-credentials -g $rgruntime -n $clustername --admin --overwrite-existin
 kubectl delete -k exercise-files
 
 kubectl delete -k k8s/logging/eck-instance/kustomize
-kubectl delete -k k8s/logging/prometheus-instance/kustomize
-kubectl delete -k k8s/logging/grafana-instance/kustomize
-kubectl delete -k jaeger-instance/kustomize 
+kubectl delete -k k8s/monitoring/prometheus-instance/kustomize
+kubectl delete -k k8s/monitoring/grafana-instance/kustomize
+kubectl delete -k k8s/tracing/jaeger-instance/kustomize 
 
-kubectl delete -k k8s/tracing/certmanager
-kubectl delete -k k8s/monitoring/grafana-operator/kustomize
-kubectl delete -k k8s/logging/eck-operator/kustomize
 kubectl delete -k k8s/tracing/jaeger-operator/kustomize
+kubectl delete -k k8s/tracing/certmanager
+kubectl delete -k k8s/logging/eck-operator/kustomize
+kubectl delete -k k8s/monitoring/grafana-operator/kustomize
 kubectl delete -k k8s/monitoring/prometheus-operator/kustomize
