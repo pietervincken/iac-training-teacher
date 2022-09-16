@@ -9,7 +9,4 @@ helm template elastic-operator elastic/eck-operator -n operator-elasticsearch --
   --set config.metricsPort=8080 \
   > kustomize/resources/all-in-one.yaml
 
-#### Update images
-# VERSION=$(grep app.kubernetes.io/version kustomize/resources/all-in-one.yaml  |head -1|sed 's/.[^"]*"\([^"]*\)"/\1/')
-# sed -i.bak s/"docker.elastic.co\/eck\/eck-operator:[^-]*"/"docker.elastic.co\/eck\/eck-operator:${VERSION}"/ images.list
-# rm images.list.bak
+echo "Update manifests based on https://github.com/elastic/cloud-on-k8s/tree/main/config"

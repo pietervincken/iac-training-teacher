@@ -1,13 +1,14 @@
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
-  name: quickstart
+  name: elasticsearch
 spec:
-  version: 7.15.0
+  version: 8.4.0
   nodeSets:
     - name: default
       count: 1
       config:
+        node.roles: ["master", "data", "ingest"]
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:

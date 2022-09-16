@@ -4,11 +4,11 @@ metadata:
   name: filebeat
 spec:
   type: filebeat
-  version: 7.14.0
+  version: 8.4.0
   elasticsearchRef:
-    name: quickstart
+    name: elasticsearch
   kibanaRef:
-    name: quickstart
+    name: kibana
   config:
     filebeat:
       autodiscover:
