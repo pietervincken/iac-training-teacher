@@ -36,15 +36,15 @@ locals {
 
   trainees=tomap({
     "pieter": "Pieter.Vincken@ordina.be",
-    "maarten": "maarten.casteels@ordina.be",
-    # "pieterjan": "Pieter-Jan.Lavaerts@ordina.be",
-    # "yanko": "Yanko.Buyens@ordina.be",
-    # "femke": "Femke.Tack@ordina.be",
-    # "lander": "Lander.Marien@ordina.be",
-    # "eli": "Eli.Kakiashvili@ordina.be",
-    # "ferre": "Ferre.Vangenechten@ordina.be",
-    # "ali": "Ali.Alwasseti@ordina.be",
-    # "robbe": "Robbe.DeProft@ordina.be"
+    # "maarten": "maarten.casteels@ordina.be",
+    "pieterjan": "Pieter-Jan.Lavaerts@ordina.be",
+    "yanko": "Yanko.Buyens@ordina.be",
+    "femke": "Femke.Tack@ordina.be",
+    "lander": "Lander.Marien@ordina.be",
+    "eli": "Eli.Kakiashvili@ordina.be",
+    "ferre": "Ferre.Vangenechten@ordina.be",
+    "ali": "Ali.Alwasseti@ordina.be",
+    "robbe": "Robbe.DeProft@ordina.be"
   })
 }
 
