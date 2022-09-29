@@ -44,7 +44,8 @@ locals {
     "eli": "Eli.Kakiashvili@ordina.be",
     "ferre": "Ferre.Vangenechten@ordina.be",
     "ali": "Ali.Alwasseti@ordina.be",
-    "robbe": "Robbe.DeProft@ordina.be"
+    "robbe": "Robbe.DeProft@ordina.be",
+    "sigriet": "sigriet.vanbreusegem@ordina.be"
   })
 }
 
