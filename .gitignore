@@ -31,3 +31,4 @@ override.tf.json
 .terraform*
 config.azurerm.tfbackend
 .env
+tf/output.json
