@@ -29,7 +29,8 @@ provider "azuread" {
 
 locals {
 
-  name = "jworksyppiac"
+  name   = "jworksyppiac"
+  domain = "jworks.pietervincken.com"
 
   common_tags = {
     created-by = "pieter.vincken@ordina.be"
@@ -64,7 +65,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     zones               = [3]
     node_count          = 3
     enable_auto_scaling = false
-    vm_size             = "standard_b2s"
+    vm_size             = "standard_b2ms"
     name                = "default"
     os_sku              = "Ubuntu"
   }
@@ -80,11 +81,44 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   tags = local.common_tags
 }
 
-resource "azurerm_kubernetes_cluster_node_pool" "heavy" {
-  name                  = "heavy"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.cluster.id
-  vm_size               = "standard_b2ms"
-  node_count            = 1
+## Id is needed for scope of role assignment.
+data "azurerm_resource_group" "k8s_node_rg" {
+  name = azurerm_kubernetes_cluster.cluster.node_resource_group
+}
+
+# Needed for aad-pod-identity
+# Contributor role on VMSS
+resource "azurerm_role_assignment" "aad_pod_identity_VMC" {
+  scope                = data.azurerm_resource_group.k8s_node_rg.id
+  role_definition_name = "Virtual Machine Contributor"
+  principal_id         = azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
+}
+
+# Needed for aad-pod-identity
+# Managed Identity Operator role on resource group holding the actual identities
+resource "azurerm_role_assignment" "aad_pod_identity_MIO" {
+  scope                = azurerm_resource_group.rg.id
+  role_definition_name = "Managed Identity Operator"
+  principal_id         = azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
+}
+
+# DNS Zone for this project
+resource "azurerm_dns_zone" "domain" {
+  name                = local.domain
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_user_assigned_identity" "external_dns_operator" {
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  name                = "external-dns-operator"
+}
+
+# External DNS operator permissions on dns zone
+resource "azurerm_role_assignment" "external_dns_operator" {
+  scope                = azurerm_dns_zone.domain.id
+  role_definition_name = "DNS Zone Contributor"
+  principal_id         = azurerm_user_assigned_identity.external_dns_operator.principal_id
 }
 
 module "ypps" {

@@ -1,14 +1,32 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ../../renovate-talk-azure/k8s/aad-pod-identity
+  - ../../renovate-talk-azure/k8s/external-dns
+  - ../../renovate-tekton-argo-talk/k8s/certmanager
+  - ../../renovate-tekton-argo-talk/k8s/traefik
+
   - logging/eck-operator/kustomize
-  - logging/eck-instance/kustomize
-
   - monitoring/prometheus-operator/kustomize
-  - monitoring/prometheus-instance/kustomize
-
   - monitoring/grafana-operator/kustomize
+  - tracing/jaeger-operator/kustomize
+
+  - monitoring/prometheus-instance/kustomize
   - monitoring/grafana-instance/kustomize
 
-  - tracing/jaeger-operator/kustomize
-  - tracing/jaeger-instance/kustomize
+  - grafana-ingress.yaml
+  - kibana-ingress.yaml
+  - logging/eck-instance/kustomize
+  # - tracing/jaeger-instance/kustomize
+
+secretGenerator:
+  - files:
+      - secrets/azure.json
+    name: azure-config-file
+    behavior: replace
+
+patches:
+  - target:
+      kind: AzureIdentity
+      name: external-dns
+    path: patches/azureidentity.yaml

@@ -63,7 +63,7 @@ resource "azurerm_container_group" "aci-test" {
 
   container {
     name   = "hello-world"
-    image  = "bitnami/phppgadmin"
+    image  = "bitnami/phppgadmin-archived"
     cpu    = "0.5"
     memory = "1.5"
     environment_variables = {
@@ -130,11 +130,11 @@ resource "azurerm_postgresql_firewall_rule" "firewall_postgres" {
 
 # Don't do this in real examples... This is just for demo purposes.
 output "pg_password" {
-  value = random_password.password.result
+  value     = random_password.password.result
   sensitive = true
 }
 
-output "pg_user"{
-  value = "${azurerm_postgresql_server.database.administrator_login}@${azurerm_postgresql_server.database.name}"
+output "pg_user" {
+  value     = "${azurerm_postgresql_server.database.administrator_login}@${azurerm_postgresql_server.database.name}"
   sensitive = true
 }

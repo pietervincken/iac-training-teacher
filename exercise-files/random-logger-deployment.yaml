@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: test
   name: test
@@ -14,17 +13,16 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: test
     spec:
       containers:
-      - image: chentex/random-logger:latest
-        name: random-logger
-        resources: 
-          requests: 
-            cpu: 100m
-            memory: 64Mi
-          limits: 
-            cpu: 100m
-            memory: 64Mi
+        - image: chentex/random-logger:latest
+          name: random-logger
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi

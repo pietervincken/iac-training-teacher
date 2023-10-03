@@ -24,7 +24,6 @@ kubectl delete -k k8s/monitoring/grafana-instance/kustomize
 kubectl delete -k k8s/tracing/jaeger-instance/kustomize 
 
 kubectl delete -k k8s/tracing/jaeger-operator/kustomize
-kubectl delete -k k8s/tracing/certmanager
 kubectl delete -k k8s/logging/eck-operator/kustomize
 kubectl delete -k k8s/monitoring/grafana-operator/kustomize
 kubectl delete -k k8s/monitoring/prometheus-operator/kustomize
