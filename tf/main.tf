@@ -29,7 +29,7 @@ provider "azuread" {
 
 locals {
 
-  name="jworksyppiac"
+  name = "jworksyppiac"
 
   common_tags = {
     created-by = "pieter.vincken@ordina.be"
@@ -37,25 +37,20 @@ locals {
   }
   location = "West Europe"
 
-  trainees=tomap({
-    "pieter": "Pieter.Vincken@ordina.be",
-    # "maarten": "maarten.casteels@ordina.be",
-    "pieterjan": "Pieter-Jan.Lavaerts@ordina.be",
-    "yanko": "Yanko.Buyens@ordina.be",
-    "femke": "Femke.Tack@ordina.be",
-    "lander": "Lander.Marien@ordina.be",
-    "eli": "Eli.Kakiashvili@ordina.be",
-    "ferre": "Ferre.Vangenechten@ordina.be",
-    "ali": "Ali.Alwasseti@ordina.be",
-    "robbe": "Robbe.DeProft@ordina.be",
-    "sigriet": "sigriet.vanbreusegem@ordina.be"
+  trainees = tomap({
+    "pieter" : "Pieter.Vincken@ordina.be",
+    "tim" : "tim.vandendriessche@ordina.be",
+    "viktor" : "viktor.vansteenweghen@ordina.be",
+    "omer" : "omer.tulumen@ordina.be",
+    "oumaima" : "oumaima.zerouali@ordina.be",
+    "gabriel" : "gabriel.delapena@ordina.be",
   })
 }
 
 resource "azurerm_resource_group" "rg" {
   name     = "rg-${local.name}"
   location = local.location
-  tags = local.common_tags
+  tags     = local.common_tags
 }
 
 resource "azurerm_kubernetes_cluster" "cluster" {
@@ -63,7 +58,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   dns_prefix          = local.name
-  kubernetes_version  = "1.24.3"
+  kubernetes_version  = "1.27.3"
 
   default_node_pool {
     zones               = [3]
@@ -74,7 +69,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     os_sku              = "Ubuntu"
   }
 
- azure_active_directory_role_based_access_control {
+  azure_active_directory_role_based_access_control {
     managed = true
   }
 
