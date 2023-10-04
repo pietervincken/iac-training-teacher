@@ -42,6 +42,6 @@ yq -i ".[1].value |= \"$edClientId\"" k8s/patches/azureidentity.yaml
 
 az aks get-credentials -g $rgruntime -n $clustername --admin --overwrite-existing
 
-kubectl apply -k k8s --server-side || kubectl apply -k k8s --server-side # hack to apply twice if first fails (expected)
+kubectl apply -k k8s --server-side || kubectl apply -k k8s --server-side || true # hack to apply twice if first fails (expected)
 
 kubectl apply -k exercise-files

@@ -3,4 +3,4 @@
   value: "/subscriptions/467811c4-023c-4b77-8511-54b5b2eac549/resourceGroups/rg-jworksyppiac/providers/Microsoft.ManagedIdentity/userAssignedIdentities/external-dns-operator"
 - op: replace
   path: /spec/clientID
-  value: "e8d037cf-1af2-4c0d-813f-c7354ecb854e"
+  value: "931bef0b-2864-45f8-9010-8bdb9f264fc8"
